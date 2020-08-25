@@ -34,12 +34,13 @@ const BlogForm = ({ updateBlogs, setErrorMessage }) => {
 
 
   return (
-    <div>
-      <h2>Create New</h2>
+    <div className='mx-3'>
+      <h3>Add New Blog</h3>
       <form onSubmit={createBlog}>
         <div>
-          title:
+          Title:
           <input
+            className='form-control'
             type="text"
             value={blogTitle}
             name="Title"
@@ -47,8 +48,9 @@ const BlogForm = ({ updateBlogs, setErrorMessage }) => {
           />
         </div>
         <div>
-          author:
+          Author:
           <input
+            className='form-control'
             type="text"
             value={blogAuthor}
             name="Author"
@@ -56,15 +58,16 @@ const BlogForm = ({ updateBlogs, setErrorMessage }) => {
           />
         </div>
         <div>
-          url:
+          URL:
           <input
+            className='form-control'
             type="text"
             value={blogURL}
             name="URL"
             onChange={({ target }) => setBlogURL(target.value)}
           />
         </div>
-        <button type="submit">create</button>
+        <button className='btn btn-primary' type="submit">add</button>
       </form>
     </div>
   )

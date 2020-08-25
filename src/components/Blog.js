@@ -1,55 +1,64 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Card from 'react-bootstrap/Card'
+import Accordion from 'react-bootstrap/Accordion'
+import Button from 'react-bootstrap/Button'
 
-const Blog = ({ blog, addLike, removeBlog, user }) => {
-  const [visible, setVisible] = useState(false)
-
-  const hideWhenVisible = { display: visible ? 'none' : '' }
-  const showWhenVisible = { display: visible ? '' : 'none' }
-
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
-
-  const toggleVisibility = () => {
-    setVisible(!visible)
-  }
+const Blog = ({ num, blog, addLike, removeBlog, user }) => {
 
   const removeButton = () => {
     if (blog.user.username === user.username) {
       return (
         <div>
-          <button onClick={removeBlog}>remove</button>
+          <button className='btn btn-danger btn-sm py-0 mt-3' onClick={removeBlog}>remove</button>
+        </div>
+      )
+    }
+    else {
+      console.log('not same user')
+      return (
+        <div>
+          <button
+            className='btn btn-danger btn-sm py-0 mt-3'
+            data-toggle="tooltip"
+            data-placement="right"
+            title="User did not create this note"
+            aria-disabled='true'
+            disabled>
+            remove
+          </button>
         </div>
       )
     }
   }
 
   return (
-    <div style={blogStyle}>
-      <div style={hideWhenVisible}>
-        {blog.title} {blog.author}
-        <button onClick={toggleVisibility}>view</button>
-      </div>
-      <div style={showWhenVisible}>
-        <div>
-          {blog.title}
-          <button onClick={toggleVisibility}>hide</button>
-        </div>
-        <div>{blog.url}</div>
-        <div>
-          {blog.likes}
-          <button onClick={addLike}>like</button>
-        </div>
-        <div>{blog.author}</div>
-
-        {removeButton()}
-
-      </div>
-    </div>
+    <Accordion className='mb-1'>
+      <Card>
+        <Card.Header>
+          <div className="row">
+            <div className="col-md-11">
+              <Accordion.Toggle as={Button} variant="link" eventKey={num}>
+                {blog.title} by {blog.author}
+              </Accordion.Toggle>
+            </div>
+            <div className="col-md-1 float-right">
+              {removeButton()}
+            </div>
+          </div>
+        </Card.Header>
+        <Accordion.Collapse eventKey={num}>
+          <Card.Body>
+            <div><strong>Title: </strong> {blog.title}</div>
+            <div><strong>Author: </strong> {blog.author}</div>
+            <div> <strong>URL: </strong> {blog.url}</div>
+            <div>
+              <strong>Likes: </strong>{blog.likes} <br/>
+              <button className='btn btn-sm py-0 btn-primary' onClick={addLike}>Like!</button>
+            </div>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
   )
 }
 

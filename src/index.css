@@ -1,19 +1,90 @@
-.error {
-  color: red;
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+:root {
+  --font-color: #000000;
+  --bg-color: #fff;
+  --light-color: #fff;
+  --dark-color: #fff;
 }
 
-.success {
-  color: green;
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+[data-theme="dark"] {
+  --font-color: #e1e1ff;
+  --bg-color: #161625;
+  --light-color: #3d3c4d;
+  --dark-color: #0b0b12;
 }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+.card-body {
+  color: var(--font-color);
+  background-color: var(--bg-color);
+}
+
+.card-header {
+  color: var(--font-color);
+  background-color: var(--bg-color);
+}
+
+
+
+/*Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+
+  em {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #0069D9;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

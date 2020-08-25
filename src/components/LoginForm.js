@@ -30,28 +30,30 @@ const LoginForm = ({ updateUser, setErrorMessage }) => {
   }
 
   return (
-    <div>
-      <h2>Log in to application</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-        username
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
+    <div className='text-center'>
+      <h1 className='mt-5 mb-3'>Please sign in</h1>
+      <form style={{maxWidth : '480px', margin : 'auto'}} onSubmit={handleLogin}>
+        <input
+          type="text"
+          className="form-control mb-2"
+          placeholder='Username'
+          value={username}
+          name="Username"
+          required autoFocus
+          onChange={({ target }) => setUsername(target.value)}
+        />
+        <input
+          type="password"
+          className="form-control"
+          placeholder='Password'
+          value={password}
+          name="Password"
+          onChange={({ target }) => setPassword(target.value)}
+        />
+        <div className='mt-3'>
+          <button className='btn btn-lg btn-block btn-primary' type="submit">Sign In</button>
         </div>
-        <div>
-        password
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
+
       </form>
     </div>
   )
